@@ -6,8 +6,8 @@
       <class name="TestCases.HomePageTest">
         <methods>
           <include name="addMultipleProducts"/>
-          <include name="startTest"/>
           <include name="TearDown"/>
+          <include name="SetUpDriver"/>
         </methods>
       </class> <!-- TestCases.HomePageTest -->
     </classes>
