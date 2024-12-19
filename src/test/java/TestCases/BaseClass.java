@@ -24,6 +24,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BaseClass {
 //	public static WebDriver driver;
 //	public static WebDriverWait wait;
+	// public XSSFWorkbook wbook;
+	// public XSSFSheet sheet;
 //
 //	@BeforeMethod
 //	public void startTest() {
@@ -42,57 +44,62 @@ public class BaseClass {
 //	}
 
 	public static WebDriver driver;
-	
-	//public XSSFWorkbook wbook;
-	//public XSSFSheet sheet;
-	
-	@BeforeMethod(alwaysRun=true)
+	private static ThreadLocal<WebDriver> threadLocalDriver = new ThreadLocal<>();
+
+	public static void SetDriver(WebDriver driver) {
+		threadLocalDriver.set(driver);
+	}
+
+	public static WebDriver GetDriver() {
+
+		return threadLocalDriver.get();
+
+	}
+
+	@BeforeMethod(alwaysRun = true)
 	public void SetUpDriver() throws MalformedURLException {
-		
+
 		String browser = System.getProperty("Browser");
-		
+		// String browser="chrome";
 		if (browser.equalsIgnoreCase("firefox")) {
 			driver = new FirefoxDriver();
-		}else if(browser.equalsIgnoreCase("remote-chrome")) {
-			
+		} else if (browser.equalsIgnoreCase("remote-chrome")) {
+
 			DesiredCapabilities cap = new DesiredCapabilities();
 			cap.setPlatform(Platform.WIN11);
 			cap.setBrowserName("chrome");
 
 			URL hub = new URL("http://localhost:4444/");
 			driver = new RemoteWebDriver(hub, cap);
-			
-		}
-		else {
+
+		} else {
 			driver = new ChromeDriver();
 		}
-		
-		driver.get("http://localhost:8081/medicare/");
-		driver.manage().window().maximize();
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+		SetDriver(driver);
+		GetDriver().get("http://localhost:8081/medicare/");
+		GetDriver().manage().window().maximize();
+		GetDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 	}
-	
-	
-	@AfterMethod(alwaysRun=true)
+
+	@AfterMethod(alwaysRun = true)
 	public void TearDown() {
-		
-		driver.quit();
+
+		GetDriver().quit();
 	}
-	
-	/*@BeforeTest(alwaysRun=true)
-	public void SetUpExcel() throws IOException {
-		
-		FileInputStream fis = new FileInputStream("exceldata.xlsx");
-		wbook = new XSSFWorkbook(fis);
-		sheet = wbook.getSheet("Sheet1");
-		
-	}
-	
-	@AfterTest(alwaysRun=true)
-	public void CloseExcel() throws IOException {
-		
-		wbook.close();
-		
-	}*/
+
+	/*
+	 * @BeforeTest(alwaysRun=true) public void SetUpExcel() throws IOException {
+	 * 
+	 * FileInputStream fis = new FileInputStream("exceldata.xlsx"); wbook = new
+	 * XSSFWorkbook(fis); sheet = wbook.getSheet("Sheet1");
+	 * 
+	 * }
+	 * 
+	 * @AfterTest(alwaysRun=true) public void CloseExcel() throws IOException {
+	 * 
+	 * wbook.close();
+	 * 
+	 * }
+	 */
 
 }

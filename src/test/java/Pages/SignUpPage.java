@@ -1,13 +1,14 @@
 package Pages;
 
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
 
 import TestCases.BaseClass;
 
-public class SignUpPage extends BaseClass{
-
+public class SignUpPage {
+	WebDriver driver;
 	@FindBy(xpath="//a[text()='Sign Up']")
 	WebElement SignUpBtn;
 	
@@ -58,8 +59,10 @@ public class SignUpPage extends BaseClass{
 	
 	@FindBy(xpath="//a[text()='Confirm']")
 	WebElement confirmBtn;
-	public SignUpPage() {
+	public SignUpPage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
+
 	}
 	
 	public void SignupToApp(String fn, String ln,String em, String ph, String pwd, String cpwd) throws InterruptedException {

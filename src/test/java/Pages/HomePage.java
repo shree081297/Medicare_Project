@@ -3,6 +3,7 @@ package Pages;
 import java.util.List;
 
 import org.openqa.selenium.By;
+import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
 import org.openqa.selenium.support.FindBy;
@@ -17,9 +18,9 @@ public class HomePage extends BaseClass {
 //	WebDriverWait wait;
 //	public static String actPrice;
 //	String expPrice;
-	
+	WebDriver driver;
 
-	@FindBy(xpath="(//a[text()='View'])[1]")
+	@FindBy(xpath="(//a[text()='View'])[2]")
 	WebElement product1;
 	
 	@FindBy(xpath="//*[text()=' Add to Cart']")
@@ -64,7 +65,8 @@ public class HomePage extends BaseClass {
 	@FindBy(xpath="//a[@class='btn btn-success']")
 	List<WebElement> products;
 	
-	public HomePage() {
+	public HomePage(WebDriver driver) {
+		this.driver = driver;
 		PageFactory.initElements(driver, this);
 	}
 	public void addingOneProductToCart() throws InterruptedException {
@@ -107,7 +109,7 @@ public class HomePage extends BaseClass {
 		}
 	}
 	public void addingmulProducts() throws InterruptedException {
-		for(int i=0;i<2;i++) {
+		for(int i=1;i<3;i++) {
 			viewProducts.click();
 
 			Thread.sleep(4000);
