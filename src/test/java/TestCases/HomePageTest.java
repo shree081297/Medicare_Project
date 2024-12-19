@@ -17,7 +17,7 @@ public class HomePageTest extends BaseClass {
 		Thread.sleep(4000);
 
 		hp.addingOneProductToCart();
-		hp.validateSucessMessage("Diclofenac");
+		hp.validateSucessMessage("Combiflame");
 		hp.addcardDetails("1234567897","12", "28", "154");
 		hp.validteOrderSucessMessage("Your Order is Confirmed!!");
 	
