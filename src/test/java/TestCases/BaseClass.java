@@ -80,7 +80,7 @@ public class BaseClass {
 		GetDriver().manage().window().maximize();
 		GetDriver().manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
 	}
-
+//eduko
 	@AfterMethod(alwaysRun = true)
 	public void TearDown() {
 
