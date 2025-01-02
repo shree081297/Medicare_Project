@@ -22,10 +22,10 @@ public class HomePageTest extends BaseClass {
 		hp.validteOrderSucessMessage("Your Order is Confirmed!!");
 	
 	}
-	@Test(groups={"sanity","smoke"}, description="this scenerio is adding mutiple products")
+	@Test(groups={"sanity","smoke"}, description="this scenerio is adding mutiple products in cart")
 	public void addMultipleProducts() throws InterruptedException {
 		LoginPage lp=new LoginPage(GetDriver());
-		lp.EnterLoginDetails("test22ss@gmail.com", "Test@123");
+		lp.EnterLoginDetails("test222@gmail.com", "Test@123");
 		lp.validateSucessMessage("Most Viewed Medicines");
 		HomePage hp=new HomePage(GetDriver());
 		Thread.sleep(4000);
