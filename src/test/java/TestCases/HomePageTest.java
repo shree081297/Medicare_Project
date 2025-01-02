@@ -22,7 +22,7 @@ public class HomePageTest extends BaseClass {
 		hp.validteOrderSucessMessage("Your Order is Confirmed!!");
 	
 	}
-	@Test(groups={"sanity"})
+	@Test(groups={"sanity","smoke"}, description="this scenerio is adding mutiple products")
 	public void addMultipleProducts() throws InterruptedException {
 		LoginPage lp=new LoginPage(GetDriver());
 		lp.EnterLoginDetails("test222@gmail.com", "Test@123");
