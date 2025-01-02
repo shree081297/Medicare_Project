@@ -8,7 +8,7 @@ import Pages.LoginPage;
 
 public class HomePageTest extends BaseClass {
 //public static ExpPrice;
-	@Test(groups={"sanity","regression"}, description="This Test cases is used to add one product to cart until invoice")
+	@Test(groups={"sanity","regression"}, description="This Test cases is used to add single product to cart until invoice")
 	public void addingProductCart() throws InterruptedException {
 		LoginPage lp=new LoginPage(GetDriver());
 		lp.EnterLoginDetails("test222@gmail.com", "Test@123");
@@ -22,7 +22,7 @@ public class HomePageTest extends BaseClass {
 		hp.validteOrderSucessMessage("Your Order is Confirmed!!");
 	
 	}
-	@Test(groups={"sanity","smoke"}, description="this scenerio is adding mutiple products in cart")
+	@Test(groups={"sanity","smoke"}, description="this scenerio is adding multiple products in cart")
 	public void addMultipleProducts() throws InterruptedException {
 		LoginPage lp=new LoginPage(GetDriver());
 		lp.EnterLoginDetails("test222@gmail.com", "Test@123");
