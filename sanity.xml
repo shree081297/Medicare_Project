@@ -4,7 +4,7 @@
   <test thread-count="1" name="Test" parallel="methods">
   <groups>
   <run>
-  <include name="regression"/>
+  <include name="sanity"/>
   </run>
   </groups>
     <classes>
