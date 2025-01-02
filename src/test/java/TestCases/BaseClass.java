@@ -24,8 +24,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BaseClass {
 //	public static WebDriver driver;
 //	public static WebDriverWait wait;
-	// public XSSFWorkbook wbook;
-	// public XSSFSheet sheet;
+	public XSSFWorkbook wbook;
+	public XSSFSheet sheet;
 //
 //	@BeforeMethod
 //	public void startTest() {
@@ -87,19 +87,20 @@ public class BaseClass {
 		GetDriver().quit();
 	}
 
-	/*
-	 * @BeforeTest(alwaysRun=true) public void SetUpExcel() throws IOException {
-	 * 
-	 * FileInputStream fis = new FileInputStream("exceldata.xlsx"); wbook = new
-	 * XSSFWorkbook(fis); sheet = wbook.getSheet("Sheet1");
-	 * 
-	 * }
-	 * 
-	 * @AfterTest(alwaysRun=true) public void CloseExcel() throws IOException {
-	 * 
-	 * wbook.close();
-	 * 
-	 * }
-	 */
+	@BeforeTest(alwaysRun = true)
+	public void SetUpExcel() throws IOException {
+
+		FileInputStream fis = new FileInputStream("exceldata.xlsx");
+		wbook = new XSSFWorkbook(fis);
+		sheet = wbook.getSheet("Sheet1");
+
+	}
+
+	@AfterTest(alwaysRun = true)
+	public void CloseExcel() throws IOException {
+
+		wbook.close();
+
+	}
 
 }
