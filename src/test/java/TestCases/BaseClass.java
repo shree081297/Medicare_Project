@@ -5,14 +5,17 @@ import org.testng.annotations.AfterTest;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeTest;
 
+import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.time.Duration;
 
+import org.apache.poi.openxml4j.exceptions.InvalidFormatException;
+
 import org.apache.poi.xssf.usermodel.XSSFSheet;
-import org.apache.poi.xssf.usermodel.XSSFWorkbook;
+import org.apache.poi.xssf.usermodel.*;
 import org.openqa.selenium.Platform;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -24,8 +27,8 @@ import org.openqa.selenium.support.ui.WebDriverWait;
 public class BaseClass {
 //	public static WebDriver driver;
 //	public static WebDriverWait wait;
-	// public XSSFWorkbook wbook;
-	// public XSSFSheet sheet;
+	public static XSSFWorkbook wbook;
+	public static XSSFSheet sheet;
 //
 //	@BeforeMethod
 //	public void startTest() {
@@ -36,8 +39,8 @@ public class BaseClass {
 //		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //		
 //	}
-//	
-//	
+//	srikanth
+//	Kurella
 //	@AfterMethod
 //	public void TearDown() {
 //		driver.quit();
@@ -87,19 +90,18 @@ public class BaseClass {
 		GetDriver().quit();
 	}
 
-	/*
-	 * @BeforeTest(alwaysRun=true) public void SetUpExcel() throws IOException {
-	 * 
-	 * FileInputStream fis = new FileInputStream("exceldata.xlsx"); wbook = new
-	 * XSSFWorkbook(fis); sheet = wbook.getSheet("Sheet1");
-	 * 
-	 * }
-	 * 
-	 * @AfterTest(alwaysRun=true) public void CloseExcel() throws IOException {
-	 * 
-	 * wbook.close();
-	 * 
-	 * }
-	 */
+	@BeforeTest(alwaysRun = true)
+	public  void SetUpExcel() throws IOException {
+
+		FileInputStream file = new FileInputStream(	"TestData\\Data.xlsx");
+		wbook = new XSSFWorkbook(file);
+		sheet = wbook.getSheet("Sheet1");
+		
+	}
+
+	@AfterTest(alwaysRun = true)
+	public void CloseExcel() throws IOException {
+		wbook.close();
+	}
 
 }
