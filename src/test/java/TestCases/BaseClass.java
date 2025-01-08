@@ -92,7 +92,7 @@ public class BaseClass {
 	@BeforeTest(alwaysRun = true)
 	public  void SetUpExcel() throws IOException {
 
-		FileInputStream file = new FileInputStream(	"ExcelData.xlsx");
+		FileInputStream file = new FileInputStream(	"TestData\\ExcelData.xlsx");
 		wbook = new XSSFWorkbook(file);
 		sheet = wbook.getSheet("Sheet1");
 		
