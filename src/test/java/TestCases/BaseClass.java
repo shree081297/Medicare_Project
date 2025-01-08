@@ -39,8 +39,7 @@ public class BaseClass {
 //		wait = new WebDriverWait(driver, Duration.ofSeconds(10));
 //		
 //	}
-//	srikanth
-//	Kurella
+//
 //	@AfterMethod
 //	public void TearDown() {
 //		driver.quit();
@@ -93,7 +92,7 @@ public class BaseClass {
 	@BeforeTest(alwaysRun = true)
 	public  void SetUpExcel() throws IOException {
 
-		FileInputStream file = new FileInputStream(	"TestData\\Data.xlsx");
+		FileInputStream file = new FileInputStream(	"ExcelData.xlsx");
 		wbook = new XSSFWorkbook(file);
 		sheet = wbook.getSheet("Sheet1");
 		
