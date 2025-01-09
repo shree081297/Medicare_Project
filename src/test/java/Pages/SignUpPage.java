@@ -36,6 +36,9 @@ public class SignUpPage {
 	@FindBy(xpath="//button[@type='submit']")
 	WebElement submitBtn;
 	
+	@FindBy(xpath="//h4[text()='Sign Up - Address']")
+	WebElement sucessMess;
+	
 	@FindBy(id="addressLineOne")
 	WebElement address1;
 	
@@ -59,6 +62,10 @@ public class SignUpPage {
 	
 	@FindBy(xpath="//a[text()='Confirm']")
 	WebElement confirmBtn;
+	
+	@FindBy(xpath="//h6[text()='You can use your email address as username to login!']")
+	WebElement LoginMess;
+	
 	public SignUpPage(WebDriver driver) {
 		this.driver = driver;
 		PageFactory.initElements(driver, this);
@@ -78,6 +85,14 @@ public class SignUpPage {
 		submitBtn.click();
 		
 	}
+	public void validateSuccessMess(String ExpMess){
+		String actmess=sucessMess.getText();
+		if(actmess.equals(ExpMess)) {
+			System.out.println("Message matched");
+		}else {
+			System.out.println("Message mismatched");
+		}
+	}
 	public void SignUp_Address(String add1, String add2, String cty, String pin, String st, String cnty) throws InterruptedException {
 		address1.sendKeys(add1);
 		address2.sendKeys(add2);
@@ -89,5 +104,12 @@ public class SignUpPage {
 		Thread.sleep(4000);
 		confirmBtn.click();
 	}
-	
+	public void validateLoginMess(String ExpMess) {
+		String actMess=LoginMess.getText();
+		if(actMess.equals(ExpMess)) {
+			System.out.println("User landed on Login page");
+		}else {
+			System.out.println("user unable to land on Login Page");
+		}
+	}
 }
