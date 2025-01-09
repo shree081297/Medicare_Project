@@ -8,10 +8,14 @@ import Pages.LoginPage;
 
 public class HomePageTest extends BaseClass {
 //public static ExpPrice;
-	@Test(groups="sanity", description="This Test cases is used to add one product to cart until invoice")
+	@Test(groups="regression", description="This Test cases is used to add one product to cart until invoice")
 	public void addingProductCart() throws InterruptedException {
 		LoginPage lp=new LoginPage(GetDriver());
-		lp.EnterLoginDetails("test222@gmail.com", "Test@123");
+		String email=sheet.getRow(1).getCell(0).getStringCellValue();
+		System.out.println(email);
+		String password=sheet.getRow(1).getCell(1).getStringCellValue();
+		System.out.println(password);
+		lp.EnterLoginDetails(email, password);
 		lp.validateSucessMessage("Most Viewed Medicines");
 		HomePage hp=new HomePage(GetDriver());
 		Thread.sleep(4000);
