@@ -23,6 +23,7 @@ public class SignUpTest extends BaseClass {
 		System.out.println(password);
 		String confirmPassword=sheet.getRow(1).getCell(6).getStringCellValue();
 		System.out.println(confirmPassword);
+		Thread.sleep(4000);	
 		signup.SignupToApp(FirstName, Lastname, email, mobile, password, confirmPassword);
 		
 		signup.validateSuccessMess("Sign Up - Address");

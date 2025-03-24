@@ -2,6 +2,7 @@ package TestCases;
 
 import java.io.IOException;
 
+import org.testng.Assert;
 import org.testng.annotations.Test;
 
 import com.relevantcodes.extentreports.LogStatus;
@@ -27,10 +28,14 @@ public class LoginTest extends BaseClass{
 		test.log(LogStatus.PASS, "User sucessfully logged in to the application user landed on Homepage");
 	}catch(Exception e) {
 		test.log(LogStatus.FAIL,test.addScreenCapture(CaptureScreen(driver))+"User unable to logged in to the application","User failed to logged in to the application");
+		Assert.fail();
 	}
 	}
 	@Test(groups="invalid")
-	public void loginWithInValidCred() throws InterruptedException {
+	public void loginWithInValidCred() throws InterruptedException, IOException {
+		try {
+			test=report.startTest("Tc_002").assignAuthor("Srikanth").assignCategory("sanity testing");
+		
 		LoginPage lp=new LoginPage(GetDriver());
 //		lp.EnterLoginDetails("test2@gmail.com", "Test@12");
 //		lp.validateErrorMessage("Username and Password is invalid!");
@@ -40,6 +45,11 @@ public class LoginTest extends BaseClass{
 		System.out.println(InValidPwd);
 		lp.EnterLoginDetails(email, InValidPwd);
 		lp.validateErrorMessage("Username and Password is invalid!");
+		test.log(LogStatus.PASS,"User got error message ","user get failed message");
+	}catch(Exception e) {
+		test.log(LogStatus.FAIL, test.addScreenCapture(CaptureScreen(driver))+"User uable to get failed message","user failed to get error message");
+		Assert.fail();
+	}	
 	}
 
 }

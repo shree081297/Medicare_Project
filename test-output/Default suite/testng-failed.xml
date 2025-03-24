@@ -5,9 +5,12 @@
     <classes>
       <class name="TestCases.HomePageTest">
         <methods>
+          <include name="SetUpExcel"/>
+          <include name="CloseExcel"/>
           <include name="addMultipleProducts"/>
           <include name="TearDown"/>
           <include name="SetUpDriver"/>
+          <include name="addingProductCart"/>
         </methods>
       </class> <!-- TestCases.HomePageTest -->
     </classes>

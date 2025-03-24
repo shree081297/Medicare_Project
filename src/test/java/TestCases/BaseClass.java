@@ -97,7 +97,7 @@ public class BaseClass {
 		wbook.close();
 	}
 
-	public static String CaptureScreen(WebDriver driver) throws IOException {
+	public static String CaptureScreen(WebDriver driver) throws IOException  {
 		File src = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
 		File target = new File("screenshot/" + ".png");
 		String absolutepath = target.getAbsolutePath();

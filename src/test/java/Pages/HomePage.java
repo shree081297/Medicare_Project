@@ -1,5 +1,6 @@
 package Pages;
 
+import java.io.SyncFailedException;
 import java.util.List;
 
 import org.openqa.selenium.By;
@@ -12,6 +13,7 @@ import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import org.testng.Assert;
 
+import TestCases.Action;
 import TestCases.BaseClass;
 
 public class HomePage extends BaseClass {
@@ -20,7 +22,7 @@ public class HomePage extends BaseClass {
 //	String expPrice;
 	WebDriver driver;
 
-	@FindBy(xpath="(//a[text()='View'])[2]")
+	@FindBy(xpath="(//a[text()='View'])[1]")
 	WebElement product1;
 	
 	@FindBy(xpath="//*[text()=' Add to Cart']")
@@ -70,17 +72,23 @@ public class HomePage extends BaseClass {
 		PageFactory.initElements(driver, this);
 	}
 	public void addingOneProductToCart() throws InterruptedException {
+	//	Thread.sleep(4000);
+	//	product1.click();
 		Thread.sleep(4000);
-		product1.click();
+	
+		Action.click(driver, product1);
 		Thread.sleep(4000);
 
-		add.click();
+		//add.click();
+		Action.click(driver, add);
 		Thread.sleep(4000);
 
-		checkout.click();
+		//checkout.click();
+		Action.click(driver, checkout);
 		Thread.sleep(5000);
 
-		selectbtn.click();	
+		//selectbtn.click();	
+		Action.click(driver, selectbtn);
 		
 	}
 	public void cartMessage(String ExpCartMess) {
@@ -92,11 +100,17 @@ public class HomePage extends BaseClass {
 		Assert.assertEquals(actualMess, ExpMess);
 	}
 	public void addcardDetails(String cd, String  mm, String yr, String cv) {
-		cardNum.sendKeys(cd);
-		month.sendKeys(mm);
-		year.sendKeys(yr);
-		cvv.sendKeys(cv);
-		PayBtn.click();
+//		cardNum.sendKeys(cd);
+//		month.sendKeys(mm);
+//		year.sendKeys(yr);
+//		cvv.sendKeys(cv);
+//		PayBtn.click();
+		Action.type(cardNum, cd);
+		Action.type(month, mm);
+		Action.type(year, yr);
+		Action.type(cvv, cv);
+		Action.click(driver, PayBtn);
+		
 		
 	}
 	public void validteOrderSucessMessage(String ExpOrderMess) {
@@ -110,8 +124,8 @@ public class HomePage extends BaseClass {
 	}
 	public void addingmulProducts() throws InterruptedException {
 		for(int i=1;i<3;i++) {
-			viewProducts.click();
-
+		//	viewProducts.click();
+			Action.click(driver, viewProducts);
 			Thread.sleep(4000);
 			products.get(i).click();
 			Thread.sleep(2000);
@@ -119,10 +133,12 @@ public class HomePage extends BaseClass {
 		}
 	}
 	public void checkout() throws InterruptedException {
-		checkout.click();
+		//checkout.click();
+		Action.click(driver, checkout);
 		Thread.sleep(5000);
 
-		selectbtn.click();
+		//selectbtn.click();
+		Action.click(driver, selectbtn);
 	}
 
 }
